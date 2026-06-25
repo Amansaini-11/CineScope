@@ -46,6 +46,7 @@ struct MovieListView: View {
                         }
                     }
                     
+                  //task modifier for our list view which will call LoadMovies function
                 }.task {
                     await loadMovies()
                 }
@@ -53,7 +54,7 @@ struct MovieListView: View {
         }
     }
     
-    
+    //LoadMovies function to give a quary and getch data
     func loadMovies() async {
         do {
             movies = try await movieService.searchMovies(query: "batman")
@@ -66,7 +67,7 @@ struct MovieListView: View {
     
 }
 
-
+//Detailed view for each Movie in the list.
 struct MovieDetailView: View {
     let movie: Movie
     

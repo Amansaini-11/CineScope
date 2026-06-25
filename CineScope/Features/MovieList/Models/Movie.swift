@@ -4,10 +4,10 @@
 //
 //  Created by Aman Saini on 25/06/2026.
 //
-
-//Data Model
 import Foundation
 
+
+//Data Model for our Movies
 struct Movie: Codable, Identifiable {
     
     var title : String
@@ -18,6 +18,7 @@ struct Movie: Codable, Identifiable {
     
     var id : String { imdbID }
     
+    //CodingKeys to explicitly convert the variable string to capital letter for JSON data
     enum CodingKeys: String, CodingKey {
         
         case title = "Title"
@@ -27,6 +28,7 @@ struct Movie: Codable, Identifiable {
     }
 }
 
+//MovieResponse for outer layer of the JSON data 
 struct MovieResponse: Codable {
     let search: [Movie]
     
