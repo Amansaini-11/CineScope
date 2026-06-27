@@ -11,19 +11,23 @@ import SwiftUI
 //Movie list View
 struct MovieListView: View {
     
-    //List of Movies
-    @State private var movies: [Movie] = []
-    private var movieService = MovieService()
+    @StateObject private var viewModel = MovieListViewModel()
     
     var body: some View {
         NavigationStack{
             VStack{
+                
                 Text("CineScope")
                     .font(.title)
                     .fontWeight(.bold)
                     .padding()
-                //List does not need for each loop.We can loop through entire list using this method.
-                List($movies){ $movie in
+                    
+                
+                TextField("Search for Movies", text: $viewModel.searchText)
+                    .textFieldStyle(.roundedBorder)
+                    .padding(.horizontal)
+                
+                List($viewModel.movies){ $movie in
                     NavigationLink{
                         MovieDetailView(movie: movie)
                     }label: {
@@ -45,26 +49,10 @@ struct MovieListView: View {
                             }
                         }
                     }
-                    
-                  //task modifier for our list view which will call LoadMovies function
-                }.task {
-                    await loadMovies()
                 }
             }
         }
     }
-    
-    //LoadMovies function to give a quary and getch data
-    func loadMovies() async {
-        do {
-            movies = try await movieService.searchMovies(query: "batman")
-            
-        }catch{
-            print("Error while Loading movies \(error)")
-        }
-        
-    }
-    
 }
 
 //Detailed view for each Movie in the list.
@@ -95,5 +83,6 @@ struct MovieDetailView: View {
 
 
 #Preview {
+    
     MovieListView()
 }
