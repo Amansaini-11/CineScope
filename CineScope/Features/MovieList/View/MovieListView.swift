@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
-
+import SwiftData
 
 //Movie list View
 struct MovieListView: View {
     
     @StateObject private var viewModel = MovieListViewModel()
+    @Environment(\.modelContext) private var modelContext
+    @Query private var favoriteMovies : [FavoriteMovie]
     
     var body: some View {
         NavigationStack{
@@ -43,11 +45,33 @@ struct MovieListView: View {
                             
                             Button{
                                 movie.isFavorite.toggle()
+                                
+                                if movie.isFavorite{
+                                    
+                                    let favorite = FavoriteMovie(title: movie.title,
+                                                                 year: movie.year,
+                                                                 poster: movie.poster,  imdbID: movie.imdbID)
+                                    modelContext.insert(favorite)
+                                    
+                                } else {
+                                    
+                                    if let existingFavorite = favoriteMovies.first(where: { $0.imdbID == movie.imdbID }) {
+                                        
+                                        modelContext.delete(existingFavorite)
+                                    }
+                                }
                             }label: {
                                 Image(systemName: movie.isFavorite ? "heart.fill" : "heart")
                                     .foregroundColor(.red)
-                            }
+                            }.buttonStyle(.plain)
+                            .buttonSizing(.automatic)
                         }
+                    }
+                }
+                .onChange(of: viewModel.movies) { oldValue, newValue in
+                    for index in viewModel.movies.indices {
+                        let isFav = favoriteMovies.contains { $0.imdbID == viewModel.movies[index].imdbID }
+                        viewModel.movies[index].isFavorite = isFav
                     }
                 }
             }

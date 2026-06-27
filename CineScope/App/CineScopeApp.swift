@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct CineScopeApp: App {
     var body: some Scene {
         WindowGroup {
+            
             MovieListView()
-        }
+            
+        }.modelContainer(for: FavoriteMovie.self)
     }
 }

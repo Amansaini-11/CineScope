@@ -8,7 +8,7 @@ import Foundation
 
 
 //Data Model for our Movies
-struct Movie: Codable, Identifiable {
+struct Movie: Codable, Identifiable, Equatable{
     
     var title : String
     var year: String
