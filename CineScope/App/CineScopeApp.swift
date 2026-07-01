@@ -23,7 +23,7 @@ struct CineScopeApp: App {
             
             if authViewModel.isLoggedIn {
                 
-                MovieListView()
+                MainTabView()
                     .environmentObject(authViewModel)
                 
             }else{

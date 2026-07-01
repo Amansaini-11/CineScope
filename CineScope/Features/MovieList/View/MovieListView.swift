@@ -87,6 +87,16 @@ struct MovieListView: View {
                 }
                 .navigationTitle("CineScope")
                 .navigationBarTitleDisplayMode(.inline)
+                .onChange(of: favoriteMovies) { oldValue, newValue in
+                    for index in viewModel.movies.indices {
+                        let isFav = favoriteMovies.contains { $0.imdbID == viewModel.movies[index].imdbID }
+                        viewModel.movies[index].isFavorite = isFav
+                    }
+                }
+               
+            }
+            .task {
+                await viewModel.syncFavoritesFromFirestore(modelContext: modelContext)
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing){

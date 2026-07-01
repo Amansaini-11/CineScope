@@ -6,12 +6,16 @@
 //
 import Foundation
 import Combine
+import UIKit
+import SwiftUI
+import SwiftData
 
 class MovieListViewModel : ObservableObject {
-    
+    @Environment(\.modelContext) var modelContext
     @Published var movies: [Movie] = []
     @Published var searchText : String = ""
     
+    private var firestoreService = FirestoreService()
     private var movieService = MovieService()
     private var cancellables = Set<AnyCancellable>()
     
@@ -44,4 +48,16 @@ class MovieListViewModel : ObservableObject {
         }
     }
     
+    func syncFavoritesFromFirestore(modelContext: ModelContext) async {
+        do {
+            let cloudFavorites = try await firestoreService.fetchFavorites()
+            print("Cloud favorites count: \(cloudFavorites.count)")
+            for favorite in cloudFavorites {
+                print("Fetched from Firestore: \(favorite.title)")
+                modelContext.insert(favorite)
+            }
+        } catch {
+            print("Sync error: \(error)")
+        }
+    }
 }
