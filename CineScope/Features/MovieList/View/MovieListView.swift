@@ -11,6 +11,7 @@ import SwiftData
 //Movie list View
 struct MovieListView: View {
     
+    @EnvironmentObject var authViewModel : AuthViewModel
     @StateObject private var viewModel = MovieListViewModel()
     @Environment(\.modelContext) private var modelContext
     @Query private var favoriteMovies : [FavoriteMovie]
@@ -73,6 +74,14 @@ struct MovieListView: View {
                         let isFav = favoriteMovies.contains { $0.imdbID == viewModel.movies[index].imdbID }
                         viewModel.movies[index].isFavorite = isFav
                     }
+                }
+                
+                Button{
+                    authViewModel.logout()
+                }label: {
+                    Text("Logout")
+                        .font(.subheadline)
+                        .foregroundStyle(Color.blue)
                 }
             }
         }

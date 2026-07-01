@@ -7,13 +7,30 @@
 
 import SwiftUI
 import SwiftData
+import FirebaseCore
 
 @main
 struct CineScopeApp: App {
+    
+    @StateObject var authViewModel = AuthViewModel()
+    
+    init() {
+        FirebaseApp.configure()
+    }
+    
     var body: some Scene {
         WindowGroup {
             
-            MovieListView()
+            if authViewModel.isLoggedIn {
+                
+                MovieListView()
+                    .environmentObject(authViewModel)
+                
+            }else{
+                
+                AuthView()
+                    .environmentObject(authViewModel)
+            }
             
         }.modelContainer(for: FavoriteMovie.self)
     }

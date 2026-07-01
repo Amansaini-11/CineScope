@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		078ED3012FF4FFB80087CC2F /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 078ED3002FF4FFB80087CC2F /* FirebaseCore */; };
+		078ED3082FF504E80087CC2F /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 078ED3072FF504E80087CC2F /* FirebaseAuth */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		07CE61842FEBC96C000D1E53 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +57,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				078ED3012FF4FFB80087CC2F /* FirebaseCore in Frameworks */,
+				078ED3082FF504E80087CC2F /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,12 +79,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		078ED2FF2FF4FFB80087CC2F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		07CE616D2FEBC96A000D1E53 = {
 			isa = PBXGroup;
 			children = (
 				07CE61782FEBC96A000D1E53 /* CineScope */,
 				07CE61862FEBC96C000D1E53 /* CineScopeTests */,
 				07CE61902FEBC96C000D1E53 /* CineScopeUITests */,
+				078ED2FF2FF4FFB80087CC2F /* Frameworks */,
 				07CE61772FEBC96A000D1E53 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -112,6 +127,8 @@
 			);
 			name = CineScope;
 			packageProductDependencies = (
+				078ED3002FF4FFB80087CC2F /* FirebaseCore */,
+				078ED3072FF504E80087CC2F /* FirebaseAuth */,
 			);
 			productName = CineScope;
 			productReference = 07CE61762FEBC96A000D1E53 /* CineScope.app */;
@@ -195,6 +212,9 @@
 			);
 			mainGroup = 07CE616D2FEBC96A000D1E53;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				078ED2FE2FF4FE320087CC2F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 07CE61772FEBC96A000D1E53 /* Products */;
 			projectDirPath = "";
@@ -405,6 +425,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -413,6 +434,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Amansaini.CineScope;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -437,6 +462,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -445,6 +471,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Amansaini.CineScope;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -578,6 +608,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		078ED2FE2FF4FE320087CC2F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.15.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		078ED3002FF4FFB80087CC2F /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 078ED2FE2FF4FE320087CC2F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		078ED3072FF504E80087CC2F /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 078ED2FE2FF4FE320087CC2F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 07CE616E2FEBC96A000D1E53 /* Project object */;
 }
