@@ -15,20 +15,20 @@ struct MovieListView: View {
     @StateObject private var viewModel = MovieListViewModel()
     @Environment(\.modelContext) private var modelContext
     @Query private var favoriteMovies : [FavoriteMovie]
+    private var firestoreService = FirestoreService()
     
     var body: some View {
         NavigationStack{
             VStack{
                 
-                Text("CineScope")
-                    .font(.title)
-                    .fontWeight(.bold)
-                    .padding()
-                    
-                
+//                Text("CineScope")
+//                    .font(.title)
+//                    .fontWeight(.bold)
+//                    .padding()
+                  
                 TextField("Search for Movies", text: $viewModel.searchText)
                     .textFieldStyle(.roundedBorder)
-                    .padding(.horizontal)
+                    .padding()
                 
                 List($viewModel.movies){ $movie in
                     NavigationLink{
@@ -52,13 +52,23 @@ struct MovieListView: View {
                                     let favorite = FavoriteMovie(title: movie.title,
                                                                  year: movie.year,
                                                                  poster: movie.poster,  imdbID: movie.imdbID)
+                                    //Adds favorites locally using SwiftData
                                     modelContext.insert(favorite)
+                                    
+                                    //Adds favorites to firestore cloud
+                                    firestoreService.addFavorites(movie: favorite)
+                                    
+                                    
                                     
                                 } else {
                                     
                                     if let existingFavorite = favoriteMovies.first(where: { $0.imdbID == movie.imdbID }) {
                                         
+                                        //removes favorites from local storage using SwiftData
                                         modelContext.delete(existingFavorite)
+                                        
+                                        //removes favotites from firestore cloud
+                                        firestoreService.removeFavorites(movie: existingFavorite)
                                     }
                                 }
                             }label: {
@@ -75,13 +85,18 @@ struct MovieListView: View {
                         viewModel.movies[index].isFavorite = isFav
                     }
                 }
-                
-                Button{
-                    authViewModel.logout()
-                }label: {
-                    Text("Logout")
-                        .font(.subheadline)
-                        .foregroundStyle(Color.blue)
+                .navigationTitle("CineScope")
+                .navigationBarTitleDisplayMode(.inline)
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing){
+                    Button{
+                        authViewModel.logout()
+                    }label:{
+                        Text("Logout")
+                            .foregroundStyle(Color.red)
+                            .font(.footnote)
+                    }
                 }
             }
         }

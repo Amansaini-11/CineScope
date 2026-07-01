@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		078ED3012FF4FFB80087CC2F /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 078ED3002FF4FFB80087CC2F /* FirebaseCore */; };
 		078ED3082FF504E80087CC2F /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 078ED3072FF504E80087CC2F /* FirebaseAuth */; };
+		078ED3122FF52C950087CC2F /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 078ED3112FF52C950087CC2F /* FirebaseFirestore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 			files = (
 				078ED3012FF4FFB80087CC2F /* FirebaseCore in Frameworks */,
 				078ED3082FF504E80087CC2F /* FirebaseAuth in Frameworks */,
+				078ED3122FF52C950087CC2F /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,6 +131,7 @@
 			packageProductDependencies = (
 				078ED3002FF4FFB80087CC2F /* FirebaseCore */,
 				078ED3072FF504E80087CC2F /* FirebaseAuth */,
+				078ED3112FF52C950087CC2F /* FirebaseFirestore */,
 			);
 			productName = CineScope;
 			productReference = 07CE61762FEBC96A000D1E53 /* CineScope.app */;
@@ -630,6 +633,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 078ED2FE2FF4FE320087CC2F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
+		};
+		078ED3112FF52C950087CC2F /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 078ED2FE2FF4FE320087CC2F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
