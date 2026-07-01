@@ -9,7 +9,11 @@ import SwiftUI
 
 class MovieDetailViewController : UIViewController{
     
-    var movie : Movie?
+    var movie: Movie? {
+          didSet {
+              titleLabel.text = movie?.title
+          }
+      }
     
     private let titleLabel : UILabel = {
         let label = UILabel()
