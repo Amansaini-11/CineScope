@@ -31,7 +31,7 @@ struct MovieListView: View {
                 
                 List($viewModel.movies){ $movie in
                     NavigationLink{
-                        MovieDetailView(movie: movie)
+                        MovieDetailViewControllerWrapper(movie: movie)
                     }label: {
                         HStack{
                             VStack(alignment: .leading, spacing: 10) {
